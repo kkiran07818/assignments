@@ -13,9 +13,9 @@ import com.assignments.utils.PropertyLoader;
 
 public class FacebookLogin {
 
-	private String userName = null;
-	private String password = null;
-	public WebDriver driver;
+	private String userName = "";
+	private String password = "";
+	public WebDriver driver = null;
 	
 	@Test
 	public void userLogin() {
@@ -31,17 +31,13 @@ public class FacebookLogin {
 		password = prop.getProperty("Password");
 
 		// user login
-		if (userName == null || password == null) {
-			System.out.println("please enter a valid username and password to proceed wit");
-		} else {
-			driver.findElement(By.id("email")).sendKeys(userName);
-			driver.findElement(By.id("pass")).sendKeys(password);
-			driver.findElement(By.name("login")).click();
-		}
 		
+		driver.findElement(By.id("email")).sendKeys(userName);
+		driver.findElement(By.id("pass")).sendKeys(password);
+		driver.findElement(By.name("login")).click();
+				
 		WebDriverWait wait = new WebDriverWait(driver, 1000);
 		
-
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(prop.getProperty("StatusBox"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("StatusBox"))));
 		ConfigurationUtils.driver.findElement(By.xpath(prop.getProperty("StatusBox"))).click();
@@ -52,14 +48,14 @@ public class FacebookLogin {
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(prop.getProperty("postButton"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("postButton"))));
-		ConfigurationUtils.driver.findElement(By.xpath(prop.getProperty("postButton"))).click();
+		driver.findElement(By.xpath(prop.getProperty("postButton"))).click();
 		
 		
 	}
 	
 	@AfterMethod
 	public void closeBrowser() {
-		ConfigurationUtils.driver.quit();
+		driver.quit();
 	}
 
 }
