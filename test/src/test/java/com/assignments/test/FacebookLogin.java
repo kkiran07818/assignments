@@ -40,11 +40,11 @@ public class FacebookLogin {
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(prop.getProperty("StatusBox"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("StatusBox"))));
-		ConfigurationUtils.driver.findElement(By.xpath(prop.getProperty("StatusBox"))).click();
+		driver.findElement(By.xpath(prop.getProperty("StatusBox"))).click();
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(prop.getProperty("statusTextArea"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("statusTextArea"))));
-		ConfigurationUtils.driver.findElement(By.xpath(prop.getProperty("statusTextArea"))).sendKeys("Hello World");
+		driver.findElement(By.xpath(prop.getProperty("statusTextArea"))).sendKeys("Hello World");
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(prop.getProperty("postButton"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getProperty("postButton"))));
